@@ -18,5 +18,10 @@ public class SzafbookApplicationTests {
 	public void contextLoads() {
 		Assert.assertEquals(true, true);
 	}
+	
+	@Test
+	public void test() {
+		Assert.assertEquals(true, true);
+	}	
 
 }
