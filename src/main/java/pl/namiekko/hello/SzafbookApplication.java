@@ -10,9 +10,8 @@ import org.springframework.context.ApplicationContext;
 public class SzafbookApplication {
 
 	public static void main(String[] args) {
+
 		ApplicationContext ctx = SpringApplication.run(SzafbookApplication.class, args);
-		
-		SpringApplication.run(SzafbookApplication.class, args);
 
 		System.out.println("Let's inspect the beans provided by Spring Boot:");
 
