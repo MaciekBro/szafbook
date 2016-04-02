@@ -1,4 +1,4 @@
-package pl.namiekko.hello;
+package pl.namiekko.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
