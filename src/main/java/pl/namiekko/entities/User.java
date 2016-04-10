@@ -1,6 +1,7 @@
 package pl.namiekko.entities;
 
 import java.net.URI;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class User {
 	
 	private String displayedName;
 	private String description;
-	@DateTimeFormat(pattern = "dd.MM.yyyy")	
-	private Date birthday;	
+	
+	private Calendar birthday;	
 	private URI profilePic;
 	
 	/** lifecycle and customization attributes */
@@ -69,11 +70,11 @@ public class User {
 		this.description = description;
 	}
 
-	public Date getBirthday() {
+	public Calendar getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(Calendar birthday) {
 		this.birthday = birthday;
 	}
 
