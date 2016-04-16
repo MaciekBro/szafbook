@@ -10,12 +10,12 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 </head>
-<body>
+<body class="landing">
 
 	<!-- Header -->
-	<header id="header" class="skel-layers-fixed">
+	<header id="header" class="alt">
 		<h1>
-			<a href="index.html">Szafbook</a>
+			<a href="#">Szafbook</a>
 		</h1>
 		<a href="#nav">Menu</a>
 	</header>
@@ -31,36 +31,24 @@
 		</ul>
 	</nav>
 
-
-	<div th:if="${message}">
-		<h2 th:text="${message}" />
-	</div>
-
-	<div>
-		<form method="POST" enctype="multipart/form-data" action="/upload">
-			<table>
-				<tr>
-					<td>File to upload:</td>
-					<td><input type="file" name="file" /></td>
-				</tr>
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" name="name" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="Upload" /></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-
-	<div>
-		<ul>
-			<li th:each="file : ${files}" th:text="${file}"></li>
+	<!-- Banner -->
+	<section id="banner">
+		<i class="icon fa-glass"></i>
+		<h2>
+			<span th:text="'Hello, ' + ${name} + '!'" th:remove="tag">&nbsp;</span>
+		</h2>
+		<p>This is a placeholder for my pet project.</p>
+		<p>
+			You can find more information (in Polish) on <a
+				href="http://namiekko.pl">my blog</a>, tagged with <a
+				href="http://namiekko.pl/tag/szafbook/">szafbook.</a>
+		</p>
+		<ul class="actions">
+			<li><a href="#" class="button big special">Log In</a></li>
+			<li><a href="user" class="button big alternate">New User</a></li>
 		</ul>
-	</div>
-	
+	</section>
+
 	<!-- Footer -->
 	<footer id="footer">
 		<div class="inner">
@@ -77,7 +65,7 @@
 	<script src="assets/js/skel.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="assets/js/main.js"></script>	
+	<script src="assets/js/main.js"></script>
 
 </body>
 </html>
