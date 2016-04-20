@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-    <title>Szafbook</title>    
+<head>
+    	<title>Szafbook</title>    
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />		
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -9,19 +9,48 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	</head>
+</head>
 <body>
 
+	<!-- Header -->
+	<header id="header" class="skel-layers-fixed">
+		<h1>
+			<a href="index.html">Szafbook</a>
+		</h1>
+		<a href="#nav">Menu</a>
+	</header>
+
+	<!-- Nav -->
+	<nav id="nav">
+		<ul class="links">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">My Wardrobes</a></li>
+			<li><a href="#">Friends' Wardrobes</a></li>
+			<li><a href="#">Search</a></li>
+			<li><a href="#">Logout</a></li>
+		</ul>
+	</nav>
+
+
 	<div th:if="${message}">
-		<h2 th:text="${message}"/>
+		<h2 th:text="${message}" />
 	</div>
 
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/upload">
 			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-				<tr><td>Name:</td><td><input type="text" name="name" /></td></tr>
-				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" name="name" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Upload" /></td>
+				</tr>
 			</table>
 		</form>
 	</div>
@@ -31,6 +60,24 @@
 			<li th:each="file : ${files}" th:text="${file}"></li>
 		</ul>
 	</div>
+	
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="copyright">
+				<li>&copy; Na miękko</li>
+				<li>Design: <a href="http://designscrazed.org/">TEMPLATE</a>.
+				</li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="assets/js/main.js"></script>	
 
 </body>
 </html>
