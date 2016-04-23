@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Szafbook</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="assets/css/main.css" />
-<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    	<title>Szafbook</title>    
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />		
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico"  />		
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 </head>
-<body>
+<body class="landing">
 
 	<!-- Header -->
-	<header id="header" class="skel-layers-fixed">
+	<header id="header" class="alt">
 		<h1>
-			<a href="/">Szafbook</a>
+			<a href="#">Szafbook</a>
 		</h1>
 		<a href="#nav">Menu</a>
 	</header>
@@ -31,12 +31,16 @@
 		</ul>
 	</nav>
 
-	<section id="main" class="wrapper">
-		<h1>
-			<span th:text="${currentUser.userName} + ' Home'" th:remove="tag">&nbsp;</span>
-		</h1>
+	<!-- Banner -->
+	<section id="banner">
+		<i class="icon fa-wrench"></i>
+		<h2>Oops.</h2>
+		<p>Something went wrong.</p>		
+		<ul class="actions">
+			<li><a href="/" class="button big special">Start Again</a></li>
+		</ul>
 	</section>
-	
+
 	<!-- Footer -->
 	<footer id="footer">
 		<div class="inner">
@@ -53,7 +57,7 @@
 	<script src="assets/js/skel.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="assets/js/main.js"></script>	
+	<script src="assets/js/main.js"></script>
 
 </body>
 </html>
