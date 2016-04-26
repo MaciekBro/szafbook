@@ -2,7 +2,6 @@ package pl.namiekko.entities;
 
 import java.net.URI;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -10,7 +9,6 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class User {
 	
