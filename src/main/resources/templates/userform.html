@@ -1,16 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Szafbook</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="assets/css/main.css" />
-<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-</head>
+<head th:include ="_others :: head" />
 <body>
+
+	<header id="header" class="alt" th:include ="_menus :: title-menu" />	
+	<nav id="nav" th:include ="_menus :: main-menu" />
+
 
 	<!-- Header -->
 	<header id="header" class="skel-layers-fixed">
@@ -81,20 +76,9 @@
 			</form>
 		</div>
 	</section>
-	<!-- Footer -->
-	<footer id="footer">
-		<div class="inner">
-			<ul class="copyright">
-				<li>&copy; Na miękko</li>
-			</ul>
-		</div>
-	</footer>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="assets/js/main.js"></script>	
+	
+	<div th:include ="_links :: security" />	
+	<footer id="footer" th:include ="_others :: footer" />
+	<th:block th:include ="_others :: scripts" />
 </body>
 </html>

@@ -28,12 +28,7 @@ public class UserController extends WebMvcConfigurerAdapter {
 		binder.registerCustomEditor(Calendar.class, new FlexibleCalendarEditor());
 	}
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/results").setViewName("results");
-	}
-
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String showForm(User userForm) {
 		return "userform";
 	}
@@ -52,8 +47,10 @@ public class UserController extends WebMvcConfigurerAdapter {
 class FlexibleCalendarEditor extends PropertyEditorSupport {
 
 	private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-	private static Pattern DATE_PATTERN_YMD = Pattern.compile("^(?<year>\\d{4})\\D(?<month>\\d{1,2})\\D(?<day>\\d{1,2})$");
-	private static Pattern DATE_PATTERN_DMY = Pattern.compile("^(?<day>\\d{1,2})\\D(?<month>\\d{1,2})\\D(?<year>\\d{4})$");
+	private static Pattern DATE_PATTERN_YMD = Pattern
+			.compile("^(?<year>\\d{4})\\D(?<month>\\d{1,2})\\D(?<day>\\d{1,2})$");
+	private static Pattern DATE_PATTERN_DMY = Pattern
+			.compile("^(?<day>\\d{1,2})\\D(?<month>\\d{1,2})\\D(?<year>\\d{4})$");
 
 	/**
 	 * Parse the calendar date from the given text.
