@@ -32,7 +32,7 @@ public class UserController extends WebMvcConfigurerAdapter {
 		return "userform";
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String checkPersonInfo(@Valid User user, Model model, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {

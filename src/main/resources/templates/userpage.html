@@ -3,8 +3,8 @@
 <head th:include ="_others :: head" />
 <body>
 
-	<header id="header" class="alt" th:include ="_menus :: title-menu" />	
-	<nav id="nav" th:include ="_menus :: main-menu" />
+	<header id="header" th:include="_menus :: title-menu" />	
+	<nav id="nav" th:include="_menus :: main-menu" />
 
 
 	<section id="main" class="wrapper">
@@ -13,8 +13,8 @@
 		</h1>
 	</section>
 	
-	<div th:include ="_links :: security" />	
+	<div th:include="_links :: security" />	
 	<footer id="footer" th:include ="_others :: footer" />
-	<th:block th:include ="_others :: scripts" />
+	<th:block th:include="_others :: scripts" />
 </body>
 </html>
