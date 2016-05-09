@@ -1,11 +1,11 @@
 package pl.namiekko.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;	
 
 @Configuration
@@ -14,11 +14,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	// sample users
 	@Autowired
-	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
+	public void configureAuth(AuthenticationManagerBuilder auth, @Value("${user.memory.username}") String username, @Value("${user.memory.password}") String password) throws Exception {
 		auth.inMemoryAuthentication()
-		.withUser("phil").password("webb").roles("USER")
-		.and()
-		.withUser("roy").password("clarkson").roles("USER", "ADMIN");
+		.withUser(username).password(password).roles("USER", "ADMIN");		
 	}
 
 	@Override
@@ -30,6 +28,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/user/**").hasRole("USER")
 			.anyRequest().authenticated()
 			.and()
+		.requiresChannel() 
+			.anyRequest()
+			.requiresSecure()
+			.and()	
 		.formLogin()
 			.loginPage("/login")
 			.defaultSuccessUrl("/")

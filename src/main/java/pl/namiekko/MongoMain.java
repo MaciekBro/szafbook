@@ -8,7 +8,7 @@ import com.mongodb.client.MongoDatabase;
 
 public class MongoMain {
 
-	public static void main(String[] args) {
+	public static void mongoMain(String[] args) {
 
 		//connect
 		MongoClient mongoClient = new MongoClient();
