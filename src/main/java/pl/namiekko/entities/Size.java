@@ -1,6 +1,12 @@
 package pl.namiekko.entities;
 
+import java.math.BigInteger;
+
+import org.springframework.data.annotation.Id;
+
 public class Size {
+	@Id
+	private BigInteger id;
 	private int heightCm;
 	private int collarSize;
 	// todo: enum

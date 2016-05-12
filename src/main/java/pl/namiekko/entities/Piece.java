@@ -1,9 +1,19 @@
 package pl.namiekko.entities;
 
+import java.math.BigInteger;
 import java.net.URI;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Piece {
+	
+	@Id
+	private BigInteger id;
+	
 	// todo: RDF-backed
 	String type;
 	Size size;
@@ -11,19 +21,41 @@ public class Piece {
 	String sex;
 	String description;
 	// todo: RDF-backed
+	
 	List<String> color;
 	// todo: RDF-backed
+	
 	List<String> style;
 	// todo: RDF-backed
+	
 	List<String> pattern;
 	// todo: RDF-backed
+	
 	List<String> material;
 	List<URI> photos;
+	
+	private BigInteger wardrobeId;
+
+	public BigInteger getId() {
+		return id;
+	}
+
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+
+	public BigInteger getWardrobeId() {
+		return wardrobeId;
+	}
+
+	public void setWardrobeId(BigInteger wardrobeId) {
+		this.wardrobeId = wardrobeId;
+	}
 
 	public List<URI> getPhotos() {
 		return photos;
 	}
-
+	
 	public void setPhotos(List<URI> photos) {
 		this.photos = photos;
 	}

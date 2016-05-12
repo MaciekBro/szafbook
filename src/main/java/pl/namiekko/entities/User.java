@@ -1,5 +1,6 @@
 package pl.namiekko.entities;
 
+import java.math.BigInteger;
 import java.net.URI;
 import java.util.Calendar;
 import java.util.List;
@@ -9,32 +10,44 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class User {
-	
+
 	/** compulsory first screen attributes */
 
+	@Id
+	private BigInteger id;
+
 	@Pattern(regexp = "\\S{2,30}")
-	private String userName;	
+	private String userName;
 	@Email
-	@NotNull
-	private String email;		
+	@NotNull	
+	private String email;
 
 	/** optional first screen attributes */
-	
+
 	private String displayedName;
 	private String description;
-	
-	private Calendar birthday;	
+
+	private Calendar birthday;
 	private URI profilePic;
-	
+
 	/** lifecycle and customization attributes */
 
-	private Size defaultSize;	
+	@DBRef
+	private Size defaultSize;
 
 	/** e.g. "normal" and "pregnant" */
+	@DBRef
 	private List<Size> sizes;
+	@DBRef
 	private List<Wardrobe> wardrobes;
+	
+	
 
 	public String getUserName() {
 		return userName;
