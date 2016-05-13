@@ -3,3 +3,4 @@ multipart.maxRequestSize=128KB
 user.memory.username=xxx
 user.memory.password=xxx
 tomcat.keystore.password=xxx
+management.context-path=xxx
