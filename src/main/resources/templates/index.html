@@ -18,7 +18,7 @@
 				href="http://namiekko.pl">my blog</a>, tagged with <a
 				href="http://namiekko.pl/tag/szafbook/">szafbook.</a>
 		</p>
-		<p th:if="${retrievedName != null}" th:text="'Our database user is, ' + ${retrievedName} + '!'" />
+		<p th:if="${retrievedName != null}" th:text="'Our database user is ' + ${retrievedName} + ' with encrypted password ' + ${retrievedPassword}" />
 		<ul class="actions">
 			<li><a href="/login" class="button big special">Sign In</a></li>
 			<li><a href="/signup" class="button big alternate">New User</a></li>

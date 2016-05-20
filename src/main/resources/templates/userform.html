@@ -3,7 +3,7 @@
 <head th:include="_others :: head" />
 <body>
 
-	<header id="header" th:include="_menus :: title-menu" />	
+	<header id="header" th:include="_menus :: title-menu" />
 	<nav id="nav" th:include="_menus :: main-menu" />
 
 
@@ -37,6 +37,16 @@
 							Error</td>
 					</tr>
 					<tr>
+						<td>Password:*</td>
+						<td><input type="password" th:field="*{password1}" /></td>
+						<td th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}">Password error</td>
+					</tr>
+					<tr>
+						<td>Repeat Password:*</td>
+						<td><input type="password" th:field="*{password2}" /></td>
+						<td th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">Password error</td>
+					</tr>
+					<tr>
 						<td>Description:</td>
 						<td><textarea th:field="*{description}">Tell us something about yourself</textarea></td>
 						<td th:if="${#fields.hasErrors('description')}"
@@ -55,9 +65,9 @@
 			</form>
 		</div>
 	</section>
-	
-	<div th:include="_links :: security" />	
+
+	<div th:include="_links :: security" />
 	<footer id="footer" th:include="_others :: footer" />
-	<th:block th:include ="_others :: scripts" />
+	<th:block th:include="_others :: scripts" />
 </body>
 </html>

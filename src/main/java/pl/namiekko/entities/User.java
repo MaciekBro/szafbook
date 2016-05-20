@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,7 +23,7 @@ public class User {
 	@Id
 	private BigInteger id;
 
-	@Pattern(regexp = "\\S{2,30}")
+	@Size(min=2,max=30)
 	private String userName;
 	@Email
 	@NotNull	
@@ -47,7 +48,42 @@ public class User {
 	@DBRef
 	private List<Wardrobe> wardrobes;
 	
+	@Transient
+	@NotNull
+    @Size(min=5,max=30)
+	private String password1;
 	
+	@Transient
+	@NotNull
+    @Size(min=5,max=30)	
+	private String password2;
+	
+	private String passwordEncrypted;
+	private String passwordSalt;	
+
+	public BigInteger getId() {
+		return id;
+	}
+
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+
+	public String getPasswordEncrypted() {
+		return passwordEncrypted;
+	}
+
+	public void setPasswordEncrypted(String passwordEncrypted) {
+		this.passwordEncrypted = passwordEncrypted;
+	}
+
+	public String getPasswordSalt() {
+		return passwordSalt;
+	}
+
+	public void setPasswordSalt(String passwordSalt) {
+		this.passwordSalt = passwordSalt;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -120,5 +156,23 @@ public class User {
 	public void setProfilePic(URI profilePic) {
 		this.profilePic = profilePic;
 	}
+
+	public String getPassword1() {
+		return password1;
+	}
+
+	public void setPassword1(String password1) {
+		this.password1 = password1;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
+	
+	
 
 }

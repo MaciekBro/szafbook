@@ -19,6 +19,7 @@ public class GreetingController {
         model.addAttribute("name", name);
         for(User user: userRepository.findAll()){
         	model.addAttribute("retrievedName", user.getUserName());
+        	model.addAttribute("retrievedPassword", user.getPasswordEncrypted());
         	break;
         }                
         return "index";

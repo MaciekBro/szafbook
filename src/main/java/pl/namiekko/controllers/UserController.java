@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,12 @@ import pl.namiekko.entities.User;
 @Controller
 public class UserController extends WebMvcConfigurerAdapter {
 
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private PasswordsHelper passwordsHelper;			    
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Calendar.class, new FlexibleCalendarEditor());
@@ -33,13 +40,26 @@ public class UserController extends WebMvcConfigurerAdapter {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String checkPersonInfo(@Valid User user, Model model, BindingResult bindingResult) {
+	public String checkPersonInfo(@Valid User user, BindingResult bindingResult, Model model) {	
 
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors() || !processPasswords(user, bindingResult)) {
 			return "userform";
 		}
+		
 		model.addAttribute("currentUser", user);
+		userRepository.save(user);
 		return "userpage";
+	}
+
+	private boolean processPasswords(User user, BindingResult bindingResult) {
+		if (!user.getPassword1().equals(user.getPassword2())) {
+			bindingResult.rejectValue("password1", "Passwords don't match", "Passwords don't match");
+			bindingResult.rejectValue("password2", "Passwords don't match", "Passwords don't match");
+			return false;
+		}
+		user.setPasswordSalt(passwordsHelper.getNextPasswordSeed());
+		user.setPasswordEncrypted(passwordsHelper.encrypt(user.getPasswordSalt() + user.getPassword1()));
+		return true;
 	}
 }
 
