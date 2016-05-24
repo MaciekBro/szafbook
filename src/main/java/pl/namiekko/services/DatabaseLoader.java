@@ -1,4 +1,4 @@
-package pl.namiekko.controllers;
+package pl.namiekko.services;
 
 import javax.annotation.PostConstruct;
 
@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import pl.namiekko.entities.User;
+import pl.namiekko.repositories.PieceRepository;
+import pl.namiekko.repositories.SizeRepository;
+import pl.namiekko.repositories.UserRepository;
+import pl.namiekko.repositories.WardrobeRepository;
 
 @Service
 @Profile("development")

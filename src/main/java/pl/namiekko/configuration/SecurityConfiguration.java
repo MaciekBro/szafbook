@@ -1,4 +1,4 @@
-package pl.namiekko.controllers;
+package pl.namiekko.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

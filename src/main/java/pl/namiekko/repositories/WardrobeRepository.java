@@ -1,4 +1,4 @@
-package pl.namiekko.controllers;
+package pl.namiekko.repositories;
 
 import java.math.BigInteger;
 

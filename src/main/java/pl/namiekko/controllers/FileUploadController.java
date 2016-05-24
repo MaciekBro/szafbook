@@ -19,10 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class FileUploadController {
+	
+	private static String LOCATION = "";
+	//private static String LOCATION = "SzafbookApplication.ROOT";
 
 	@RequestMapping(method = RequestMethod.GET, value = "/upload")
 	public String provideUploadInfo(Model model) {
-		File rootFolder = new File(SzafbookApplication.ROOT);
+		File rootFolder = new File(LOCATION);
 		List<String> fileNames = Arrays.stream(rootFolder.listFiles()).map(f -> f.getName())
 				.collect(Collectors.toList());
 
@@ -48,7 +51,7 @@ public class FileUploadController {
 		if (!file.isEmpty()) {
 			try {
 				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(new File(SzafbookApplication.ROOT + "/" + name)));
+						new FileOutputStream(new File(LOCATION + "/" + name)));
 				FileCopyUtils.copy(file.getInputStream(), stream);
 				stream.close();
 				redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + name + "!");

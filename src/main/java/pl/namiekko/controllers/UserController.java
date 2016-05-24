@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import pl.namiekko.entities.User;
+import pl.namiekko.repositories.UserRepository;
+import pl.namiekko.services.PasswordsHelper;
 
 @Controller
 public class UserController extends WebMvcConfigurerAdapter {

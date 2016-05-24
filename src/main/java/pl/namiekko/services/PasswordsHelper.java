@@ -1,4 +1,4 @@
-package pl.namiekko.controllers;
+package pl.namiekko.services;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
