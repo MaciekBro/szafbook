@@ -59,7 +59,10 @@ public class User {
 	private String password2;
 	
 	private String passwordEncrypted;
-	private String passwordSalt;	
+	private String passwordSalt;
+	private boolean confirmationStatus;
+	private String confirmationId;
+	
 
 	public BigInteger getId() {
 		return id;
@@ -172,7 +175,21 @@ public class User {
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
-	
-	
+
+	public boolean isConfirmationStatus() {
+		return confirmationStatus;
+	}
+
+	public void setConfirmationStatus(boolean confirmationStatus) {
+		this.confirmationStatus = confirmationStatus;
+	}
+
+	public String getConfirmationId() {
+		return confirmationId;
+	}
+
+	public void setConfirmationId(String confirmationId) {
+		this.confirmationId = confirmationId;
+	}		
 
 }

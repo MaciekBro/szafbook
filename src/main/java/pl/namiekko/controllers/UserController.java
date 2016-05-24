@@ -6,9 +6,13 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import pl.namiekko.entities.User;
 import pl.namiekko.repositories.UserRepository;
+import pl.namiekko.services.EmailService;
 import pl.namiekko.services.PasswordsHelper;
 
 @Controller
@@ -29,7 +34,10 @@ public class UserController extends WebMvcConfigurerAdapter {
 	private UserRepository userRepository;
 
 	@Autowired
-	private PasswordsHelper passwordsHelper;			    
+	private PasswordsHelper passwordsHelper;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -42,13 +50,16 @@ public class UserController extends WebMvcConfigurerAdapter {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String checkPersonInfo(@Valid User user, BindingResult bindingResult, Model model) {	
+	public String checkPersonInfo(@Valid User user, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors() || !processPasswords(user, bindingResult)) {
 			return "userform";
 		}
-		
+
 		model.addAttribute("currentUser", user);
+		user.setConfirmationId(createConfirmationID());
+		emailService.send(user.getEmail(), "Szafbook Account Confirmation Link",
+				"http://szafbook.pl/confirm?id=" + user.getConfirmationId());
 		userRepository.save(user);
 		return "userpage";
 	}
@@ -63,6 +74,11 @@ public class UserController extends WebMvcConfigurerAdapter {
 		user.setPasswordEncrypted(passwordsHelper.encrypt(user.getPasswordSalt() + user.getPassword1()));
 		return true;
 	}
+
+	private String createConfirmationID() {
+		return java.util.UUID.randomUUID().toString();
+	}
+
 }
 
 class FlexibleCalendarEditor extends PropertyEditorSupport {
@@ -112,4 +128,5 @@ class FlexibleCalendarEditor extends PropertyEditorSupport {
 		Calendar value = (Calendar) getValue();
 		return (value != null ? DATE_FORMAT.format(value) : "");
 	}
+
 }
