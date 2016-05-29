@@ -5,7 +5,6 @@ user.memory.password=xxx
 tomcat.keystore.password=xxx
 management.context-path=/actuator
 spring.profiles.active=development
-pl.namiekko.encryption.algorithm=PBEWithMD5AndDES
 spring.mail.username=xxx
 spring.mail.password=xxx
 spring.mail.properties.mail.smtp.starttls.enable=xxx
