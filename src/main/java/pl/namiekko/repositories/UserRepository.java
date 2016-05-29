@@ -7,5 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import pl.namiekko.entities.User;
 
 public interface UserRepository extends CrudRepository<User, BigInteger>{
-
+		
+	public User getUserByConfirmationId(String confirmationId);
+	
 }

@@ -61,7 +61,8 @@ public class UserController extends WebMvcConfigurerAdapter {
 		emailService.send(user.getEmail(), "Szafbook Account Confirmation Link",
 				"http://szafbook.pl/confirm?id=" + user.getConfirmationId());
 		userRepository.save(user);
-		return "userpage";
+		model.addAttribute("message", "Please, check your mailbox for the email confirmation link. ");
+        return "message";
 	}
 
 	private boolean processPasswords(User user, BindingResult bindingResult) {
