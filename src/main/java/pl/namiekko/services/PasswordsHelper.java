@@ -3,7 +3,6 @@ package pl.namiekko.services;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +10,11 @@ import org.springframework.stereotype.Service;
 public class PasswordsHelper {
 	
 	private SecureRandom generator;
-	
-	@Autowired
-    BCryptPasswordEncoder bcryptEncoder;		
+	private BCryptPasswordEncoder bcryptEncoder;		
 	
 	public PasswordsHelper() throws NoSuchAlgorithmException{
 		generator = new SecureRandom();
+		bcryptEncoder = new BCryptPasswordEncoder();
 	}
 	
 	public String getNextPasswordSeed(){
