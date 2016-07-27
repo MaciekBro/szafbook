@@ -5,3 +5,5 @@
 /res.log
 /upload-dir/
 /*.log
+/*.iml
+/.idea/
