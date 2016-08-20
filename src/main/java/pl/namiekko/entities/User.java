@@ -2,7 +2,9 @@ package pl.namiekko.entities;
 
 import java.math.BigInteger;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -14,9 +16,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Document
-public class User {
+public class User implements UserDetails {
 
 	/** compulsory first screen attributes */
 
@@ -24,7 +29,7 @@ public class User {
 	private BigInteger id;
 
 	@Size(min=2,max=30)
-	private String userName;
+	private String username;
 	@Email
 	@NotNull	
 	private String email;
@@ -59,7 +64,6 @@ public class User {
 	private String password2;
 	
 	private String passwordEncrypted;
-	private String passwordSalt;
 	private boolean confirmationStatus;
 	private String confirmationId;
 	
@@ -78,22 +82,6 @@ public class User {
 
 	public void setPasswordEncrypted(String passwordEncrypted) {
 		this.passwordEncrypted = passwordEncrypted;
-	}
-
-	public String getPasswordSalt() {
-		return passwordSalt;
-	}
-
-	public void setPasswordSalt(String passwordSalt) {
-		this.passwordSalt = passwordSalt;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getDisplayedName() {
@@ -190,6 +178,49 @@ public class User {
 
 	public void setConfirmationId(String confirmationId) {
 		this.confirmationId = confirmationId;
-	}		
+	}
 
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority("USER"));
+	}
+
+	@Override
+	public String getPassword() {
+		return passwordEncrypted;
+	}
+
+	public void setPassword(String password) {
+		this.passwordEncrypted = password;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return isConfirmationStatus();
+	}
 }

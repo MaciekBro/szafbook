@@ -13,7 +13,7 @@ import pl.namiekko.repositories.UserRepository;
 import pl.namiekko.repositories.WardrobeRepository;
 
 @Service
-@Profile("development")
+@Profile("unused")
 public class DatabaseLoader {
 	private final PieceRepository pieceRepository;
 	private final SizeRepository sizeRepository;
@@ -31,15 +31,17 @@ public class DatabaseLoader {
 
 	@PostConstruct
 	private void initDatabase() {
-		pieceRepository.deleteAll();
-		sizeRepository.deleteAll();
-		userRepository.deleteAll();
-		wardrobeRepository.deleteAll();
+//		pieceRepository.deleteAll();
+//		sizeRepository.deleteAll();
+//		userRepository.deleteAll();
+//		wardrobeRepository.deleteAll();
 
 //		User user = new User();
 //		user.setEmail("user@example.com");
 //		user.setDisplayedName("First User <3");
-//		user.setUserName("first1");
+//		user.setUsername("first1");
+//		user.setPassword1("abcdef");
+//		user.setConfirmationStatus(true);
 //		userRepository.save(user);
 	}
 }

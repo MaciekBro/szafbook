@@ -8,6 +8,7 @@ import pl.namiekko.entities.User;
 
 public interface UserRepository extends CrudRepository<User, BigInteger>{
 		
-	public User getUserByConfirmationId(String confirmationId);
+	User getUserByConfirmationId(String confirmationId);
+	User getUserByUsername(String username);
 	
 }

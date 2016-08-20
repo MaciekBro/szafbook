@@ -13,6 +13,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,7 +27,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import pl.namiekko.entities.User;
 import pl.namiekko.repositories.UserRepository;
 import pl.namiekko.services.EmailService;
-import pl.namiekko.services.PasswordsHelper;
 
 @Controller
 public class UserController extends WebMvcConfigurerAdapter {
@@ -34,7 +35,7 @@ public class UserController extends WebMvcConfigurerAdapter {
 	private UserRepository userRepository;
 
 	@Autowired
-	private PasswordsHelper passwordsHelper;
+	PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private EmailService emailService;
@@ -71,8 +72,7 @@ public class UserController extends WebMvcConfigurerAdapter {
 			bindingResult.rejectValue("password2", "Passwords don't match", "Passwords don't match");
 			return false;
 		}
-		user.setPasswordSalt(passwordsHelper.getNextPasswordSeed());
-		user.setPasswordEncrypted(passwordsHelper.encrypt(user.getPasswordSalt() + user.getPassword1()));
+		user.setPasswordEncrypted(passwordEncoder.encode(user.getPassword1()));
 		return true;
 	}
 
@@ -109,9 +109,9 @@ class FlexibleCalendarEditor extends PropertyEditorSupport {
 				throw new IllegalArgumentException(
 						"Could not parse date: " + text + ". Please use " + DATE_FORMAT.toPattern());
 			}
-			int year = Integer.valueOf(m.group("year")).intValue();
-			int month = Integer.valueOf(m.group("month")).intValue();
-			int day = Integer.valueOf(m.group("day")).intValue();
+			int year = Integer.valueOf(m.group("year"));
+			int month = Integer.valueOf(m.group("month"));
+			int day = Integer.valueOf(m.group("day"));
 
 			if (year > 1900 && month < 13 && day < 32) {
 				Calendar cal = Calendar.getInstance();

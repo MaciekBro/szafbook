@@ -17,8 +17,7 @@ public class ConfirmationController {
 
     @RequestMapping("/confirm")
     public String greeting(@RequestParam(value="id", required=true) String confirmationId, Model model) {
-        
-    	
+
     	User user = userRepository.getUserByConfirmationId(confirmationId);
     	String message = "Invalid confirmation id. Contact us or try again.";
     	if(user!=null){
@@ -27,7 +26,7 @@ public class ConfirmationController {
     			user.setConfirmationId(null);
     			userRepository.save(user);
     		}
-    		message = user.getUserName() + ", your account has been verified. You may now log in. ";
+    		message = user.getUsername() + ", your account has been verified. You may now log in. ";
     	}             
         
         model.addAttribute("message", message);
